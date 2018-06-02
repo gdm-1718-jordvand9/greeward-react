@@ -15,7 +15,7 @@ class FeedPage extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/activities')
+    fetch('https://greeward.herokuapp.com/api/v1/activities')
       .then(response => response.json())
       .then(item => this.setState({ activities: item }));
   }

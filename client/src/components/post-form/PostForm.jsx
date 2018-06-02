@@ -63,7 +63,7 @@ class PostForm extends Component {
   }
 
   fetchPostCreateGet = () => {
-    fetch('/api/v1/posts/vm/create', {
+    fetch('https://greeward.herokuapp.com/api/v1/posts/vm/create', {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -78,7 +78,7 @@ class PostForm extends Component {
   }
 
   fetchPostUpdateGet = () => {
-    fetch('/api/v1/post', {
+    fetch('https://greeward.herokuapp.com/api/v1/post', {
       method: 'GET',
       headers: {
         'content-type': 'application/json'

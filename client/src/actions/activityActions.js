@@ -9,7 +9,7 @@ export function createActivity() {
         cache: 'default',
         headers: { 'x-access-token': store.getState().auth.auth.token }
       };
-      const response = await fetch('/api/v1/activity', options);
+      const response = await fetch('https://greeward.herokuapp.com/api/v1/activity', options);
       const responseJson = await response.json();
 
       dispatch({
@@ -39,7 +39,7 @@ export function fetchActivity(activityId) {
   return async (dispatch) => {
     try {
       let isLiked = false;
-      const response = await fetch(`/api/v1/activity/${activityId}`);
+      const response = await fetch(`https://greeward.herokuapp.com/api/v1/activity/${activityId}`);
       const responseJson = await response.json();
       const authenticated = store.getState().auth.authenticated;
       console.log(authenticated);
@@ -74,7 +74,7 @@ export function softDeleteActivityComment(commentId) {
         mode: 'cors',
         cache: 'default'
       }
-      const response = await fetch(`/api/v1/comments/${commentId}/softdelete`, options);
+      const response = await fetch(`https://greeward.herokuapp.com/api/v1/comments/${commentId}/softdelete`, options);
       const responseJson = await response.json();
       dispatch({
         type: ACTIVITY_COMMENT_REMOVED,
@@ -105,7 +105,7 @@ export function createActivityComment({ body, activity }) {
         cache: 'default',
         headers: { 'x-access-token': store.getState().auth.auth.token }
       };
-      const response = await fetch(`/api/v1/comments/${activity}`, options);
+      const response = await fetch(`https://greeward.herokuapp.com/api/v1/comments/${activity}`, options);
       const responseJson = await response.json();
       console.log(responseJson);
       dispatch({
@@ -133,7 +133,7 @@ export function createActivityLike( activity ) {
         cache: 'default',
         headers: { 'x-access-token': store.getState().auth.auth.token }
       };
-      const response = await fetch(`/api/v1/like/${activity}`, options);
+      const response = await fetch(`https://greeward.herokuapp.com/api/v1/like/${activity}`, options);
       const responseJson = await response.json();
       dispatch({
         type: ACTIVITY_LIKE_CREATED,
@@ -160,7 +160,7 @@ export function removeActivityLike( activity ) {
         cache: 'default',
         headers: { 'x-access-token': store.getState().auth.auth.token }
       };
-      const response = await fetch(`/api/v1/unlike/${activity}`, options);
+      const response = await fetch(`https://greeward.herokuapp.com/api/v1/unlike/${activity}`, options);
       const responseJson = await response.json();
       dispatch({
         type: ACTIVITY_LIKE_REMOVED,

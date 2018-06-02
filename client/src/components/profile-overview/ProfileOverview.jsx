@@ -27,12 +27,12 @@ class ProfileOverview extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      fetch(`/api/v1/backoffice/profile/${this.props.profileId}`)
+      fetch(`https://greeward.herokuapp.com/api/v1/backoffice/profile/${this.props.profileId}`)
         .then(response => response.json())
         .then(item => this.setState({ profile: item, loading: false }));
 
     }, 1000);
-    fetch(`/api/v1/backoffice/profile/comments/${this.props.profileId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/backoffice/profile/comments/${this.props.profileId}`)
       .then(response => response.json())
       .then(item => this.setState({ comments: item, loading: false }));
   }
@@ -105,7 +105,7 @@ class ProfileOverview extends Component {
             <ListItemText primary={parseFloat(profile.stats.pts).toFixed() + ' points'} />
           </ListItem>
           <ListItem>
-            <ListItemText primary={parseFloat(profile.stats.co).toFixed() + ' co'} />
+            <ListItemText primary={parseFloat(profile.stats.km / 9).toFixed() + ' co'} />
           </ListItem>
           <Divider />
           <ListSubheader>{`Activities (${profile.activities.length})`}</ListSubheader>

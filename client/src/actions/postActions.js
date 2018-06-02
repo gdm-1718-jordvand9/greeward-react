@@ -10,7 +10,7 @@ export function createPost({ title, synopsis, body, category }, history) {
           mode: 'cors',
           cache: 'default'
       };
-      const response = await fetch('/api/v1/posts', options);
+      const response = await fetch('https://greeward.herokuapp.com/api/v1/posts', options);
       const responseJson = await response.json();
 
       dispatch({ 

@@ -92,19 +92,19 @@ class CommentsTable extends Component {
 
     switch (this.state.commentAction) {
       case PROFILEACTIONSENUM.DELETE:
-        url = `/api/v1/profiles/${this.state.commentId}`;
+        url = `https://greeward.herokuapp.com/api/v1/profiles/${this.state.commentId}`;
         options = {
           method: 'DELETE'
         }
         break;
       case PROFILEACTIONSENUM.SOFTDELETE:
-        url = `/api/v1/profiles/${this.state.commentId}/softdelete`;
+        url = `https://greeward.herokuapp.com/api/v1/profiles/${this.state.commentId}/softdelete`;
         options = {
           method: 'PATCH'
         }
         break;
       case PROFILEACTIONSENUM.SOFTUNDELETE:
-        url = `/api/v1/profiles/${this.state.commentId}/softundelete`;
+        url = `https://greeward.herokuapp.com/api/v1/profiles/${this.state.commentId}/softundelete`;
         options = {
           method: 'PATCH'
         }
@@ -139,7 +139,7 @@ class CommentsTable extends Component {
   }
 
   loadProfiles = () => {
-    fetch('/api/v1/backoffice/profiles')
+    fetch('https://greeward.herokuapp.com/api/v1/backoffice/profiles')
       .then(response => response.json())
       .then(item => this.setState({ profiles: item }));
   }

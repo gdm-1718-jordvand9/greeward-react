@@ -10,7 +10,7 @@ export function signInActionLocalStrategy({ email, password }, history) {
           mode: 'cors',
           cache: 'default'
       };
-      const response = await fetch('https://nameless-sea-27521.herokuapp.com/api/v1/auth/local', options);
+      const response = await fetch('https://greeward.herokuapp.com/api/v1/auth/local', options);
       const responseJson = await response.json();
 
       dispatch({ 
@@ -38,7 +38,7 @@ export function signInActionFacebookStrategy(accessToken, history) {
           mode: 'cors',
           cache: 'default'
       };
-      const response = await fetch('https://nameless-sea-27521.herokuapp.com/api/v1/auth/facebook', options);
+      const response = await fetch('https://greeward.herokuapp.com/api/v1/auth/facebook', options);
       const responseJson = await response.json();
 
       dispatch({ 

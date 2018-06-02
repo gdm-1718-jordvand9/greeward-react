@@ -38,7 +38,7 @@ class CommentOverview extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/backoffice/comment/${this.props.commentId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/backoffice/comment/${this.props.commentId}`)
       .then(response => response.json())
       .then(item => this.setState({ comment: item, loading: false }));
   }

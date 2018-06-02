@@ -95,19 +95,19 @@ class ActivitiesTable extends Component {
 
     switch (this.state.activityAction) {
       case ACTIVITYACTIONSENUM.DELETE:
-        url = `/api/v1/activities/${this.state.activityId}`;
+        url = `https://greeward.herokuapp.com/api/v1/activities/${this.state.activityId}`;
         options = {
           method: 'DELETE'
         }
         break;
       case ACTIVITYACTIONSENUM.SOFTDELETE:
-        url = `/api/v1/activities/${this.state.activityId}/softdelete`;
+        url = `https://greeward.herokuapp.com/api/v1/activities/${this.state.activityId}/softdelete`;
         options = {
           method: 'PATCH'
         }
         break;
       case ACTIVITYACTIONSENUM.SOFTUNDELETE:
-        url = `/api/v1/activities/${this.state.activityId}/softundelete`;
+        url = `https://greeward.herokuapp.com/api/v1/activities/${this.state.activityId}/softundelete`;
         options = {
           method: 'PATCH'
         }
@@ -142,7 +142,7 @@ class ActivitiesTable extends Component {
   }
 
   loadActivties = () => {
-    fetch('/api/v1/backoffice/activities')
+    fetch('https://greeward.herokuapp.com/api/v1/backoffice/activities')
       .then(response => response.json())
       .then(item => this.setState({ activities: item }));
   }

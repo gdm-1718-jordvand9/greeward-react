@@ -38,7 +38,7 @@ class ActivityOverview extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/backoffice/activity/${this.props.activityId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/backoffice/activity/${this.props.activityId}`)
       .then(response => response.json())
       .then(item => this.setState({ activity: item, loading: false }));
   }

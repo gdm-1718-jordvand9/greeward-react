@@ -47,17 +47,30 @@ class Profile extends Component {
     }
   }
   componentDidMount() {
-    fetch(`/api/v1/profile/${this.props.profileId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/profile/${this.props.profileId}`)
       .then(response => response.json())
       .then(item => this.setState({ profile: item }));
-    fetch(`/api/v1/following/${this.props.profileId}`)
-      .then(response => response.json())
+    fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.profileId}`)
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error("Not 200 response")
+        } else {
+          response.json()
+        }
+      })
       .then(item => this.setState({ following: item, loading: false }))
       .catch(err => {
-        this.setState({ following: [] })
+        console.log('error');
+        this.setState({ following: { _fid: [] } })
       });
-    fetch(`/api/v1/followers/${this.props.profileId}`)
-      .then(response => response.json())
+    fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.profileId}`)
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error("Not 200 response")
+        } else {
+          response.json()
+        }
+      })
       .then(item => {
         const isFollowing = item.find((obj) => { return obj._uid._id === this.props.userId })
         if (isFollowing) {
@@ -66,7 +79,7 @@ class Profile extends Component {
           this.setState({ followers: item });
         }
       }).catch(err => {
-        this.setState({ followers: {_fid: [] } });
+        this.setState({ followers: [] });
       });
     // if (this.props.authenticated && this.state.followers) {
 
@@ -82,7 +95,7 @@ class Profile extends Component {
       cache: 'default',
       headers: { 'x-access-token': this.props.token }
     };
-    fetch('/api/v1/follow', options)
+    fetch('https://greeward.herokuapp.com/api/v1/follow', options)
       .then(response => response.json())
       .then(item => this.setState({ followed: true, followers: item }));
   }
@@ -93,7 +106,7 @@ class Profile extends Component {
       cache: 'default',
       headers: { 'x-access-token': this.props.token }
     };
-    fetch(`/api/v1/unfollow/${this.props.profileId}`, options)
+    fetch(`https://greeward.herokuapp.com/api/v1/unfollow/${this.props.profileId}`, options)
       .then(response => response.json())
       .then(item => this.setState({ followed: false, followers: item }));
   }

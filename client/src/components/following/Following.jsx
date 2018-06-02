@@ -21,7 +21,7 @@ class Following extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/following/${this.props.userId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.userId}`)
       .then(response => response.json())
       .then(item => this.setState({ following: item._fid, loading: false }));
   }

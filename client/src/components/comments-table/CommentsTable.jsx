@@ -97,19 +97,19 @@ class CommentsTable extends Component {
 
     switch (this.state.commentAction) {
       case COMMENTACTIONSENUM.DELETE:
-        url = `/api/v1/comments/${this.state.commentId}`;
+        url = `https://greeward.herokuapp.com/api/v1/comments/${this.state.commentId}`;
         options = {
           method: 'DELETE'
         }
         break;
       case COMMENTACTIONSENUM.SOFTDELETE:
-        url = `/api/v1/comments/${this.state.commentId}/softdelete`;
+        url = `https://greeward.herokuapp.com/api/v1/comments/${this.state.commentId}/softdelete`;
         options = {
           method: 'PATCH'
         }
         break;
       case COMMENTACTIONSENUM.SOFTUNDELETE:
-        url = `/api/v1/comments/${this.state.commentId}/softundelete`;
+        url = `https://greeward.herokuapp.com/api/v1/comments/${this.state.commentId}/softundelete`;
         options = {
           method: 'PATCH'
         }
@@ -144,7 +144,7 @@ class CommentsTable extends Component {
   }
 
   loadActivties = () => {
-    fetch('/api/v1/backoffice/comments')
+    fetch('https://greeward.herokuapp.com/api/v1/backoffice/comments')
       .then(response => response.json())
       .then(item => this.setState({ comments: item }));
   }

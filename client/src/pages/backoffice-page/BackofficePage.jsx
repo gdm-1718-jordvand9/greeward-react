@@ -15,8 +15,8 @@ class BackofficePage extends Component {
   render() {
     const { classes } = this.props;
     return (
-        <Card >
-        <h1>Backoffice</h1>
+      <div>
+        <h2>Backoffice</h2>
         <List className={classes.root}>
           <ListItem button component={Link} to="/backoffice/activities-table">
             <ListItemText primary="Activities" />
@@ -28,7 +28,8 @@ class BackofficePage extends Component {
             <ListItemText primary="Users" />
           </ListItem>
         </List>
-      </Card>
+      </div>
+
     );
   }
 }

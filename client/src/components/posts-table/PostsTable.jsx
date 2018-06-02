@@ -92,19 +92,19 @@ class PostsTable extends Component {
 
     switch(this.state.postAction) {
       case POSTACTIONSENUM.DELETE:
-        url = `/api/v1/posts/${this.state.postId}`;
+        url = `https://greeward.herokuapp.com/api/v1/posts/${this.state.postId}`;
         options = {
           method: 'DELETE'
         }
         break;
       case POSTACTIONSENUM.SOFTDELETE:
-        url = `/api/v1/posts/${this.state.postId}/softdelete`;
+        url = `https://greeward.herokuapp.com/api/v1/posts/${this.state.postId}/softdelete`;
         options = {
           method: 'PATCH'
         }
         break;
       case POSTACTIONSENUM.SOFTUNDELETE:
-        url = `/api/v1/posts/${this.state.postId}/softundelete`;
+        url = `https://greeward.herokuapp.com/api/v1/posts/${this.state.postId}/softundelete`;
         options = {
           method: 'PATCH'
         }
@@ -139,7 +139,7 @@ class PostsTable extends Component {
   }
 
   loadPosts = () => {
-    fetch('/api/v1/posts')
+    fetch('https://greeward.herokuapp.com/api/v1/posts')
       .then( response => response.json())
       .then( item => this.setState({ posts: item })); 
   }

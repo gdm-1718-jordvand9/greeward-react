@@ -31,7 +31,7 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/posts')
+    fetch('https://greeward.herokuapp.com/api/v1/posts')
       .then( response => response.json())
       .then( item => this.setState({ posts: item })); 
   }

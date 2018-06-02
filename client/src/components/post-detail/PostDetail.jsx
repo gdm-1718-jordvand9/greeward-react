@@ -15,7 +15,7 @@ class PostDetail extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/posts/${this.props.postId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/posts/${this.props.postId}`)
       .then( response => response.json())
       .then( item => this.setState({ post: item })); 
   }

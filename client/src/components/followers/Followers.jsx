@@ -22,7 +22,7 @@ class Followers extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/followers/${this.props.userId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.userId}`)
       .then(response => response.json())
       .then(item => this.setState({ followers: item, loading: false }));
   }
