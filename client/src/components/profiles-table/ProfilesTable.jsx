@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as moment from 'moment';
 
 /*
 Libraries
 */
 import Enum from "es6-enum";
+import * as moment from 'moment';
+import { Link } from 'react-router-dom';
 
 /*
 Material UI
@@ -164,7 +165,7 @@ class CommentsTable extends Component {
               onClick={() => this.handleDialogOpen(profile._id, PROFILEACTIONSENUM.DELETE)}>
               <IconDeleteForever />
             </IconButton>
-            <IconButton>
+            <IconButton component={Link} to={`/backoffice/profile-overview/${profile._id}`}>
               <IconInfo />
             </IconButton>
           </TableCell>

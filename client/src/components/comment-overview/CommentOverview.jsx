@@ -16,6 +16,7 @@ Material UI
 */
 import { withStyles, List, ListSubheader, ListItem, ListItemText, Divider, ListItemIcon, Avatar } from 'material-ui';
 import IconDirectionsBike from '@material-ui/icons/DirectionsBike';
+import IconList from '@material-ui/icons/List';
 
 
 const styles = theme => ({
@@ -49,6 +50,12 @@ class CommentOverview extends Component {
     if (this.state.comment) {
       return (
         <List className={classes.root}>
+        <ListItem>
+            <ListItemText primary="Comment" />
+            <Avatar component={Link} to="/backoffice/activities-table" classes={classes.avatar}>
+              <IconList />
+            </Avatar>
+          </ListItem>
           <ListSubheader>Id</ListSubheader>
           <ListItem>
             <ListItemText primary={comment._id} />

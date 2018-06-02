@@ -158,7 +158,6 @@ class CommentsTable extends Component {
           <TableCell>{comment._user.first_name + ' ' + comment._user.last_name}</TableCell>
           <TableCell>{comment.body}</TableCell>
           <TableCell>{moment(comment.created_at).format('DD/MM/YYYY')}</TableCell>
-          <TableCell component={Link} to={`/backoffice/activity/${comment._activity}`}>{comment._activity}</TableCell>
           <TableCell>
             <IconButton
               onClick={() => this.handleDialogOpen(comment._id, (comment.deleted_at) ? COMMENTACTIONSENUM.SOFTUNDELETE : COMMENTACTIONSENUM.SOFTDELETE)} style={{ opacity: ((comment.deleted_at) ? 0.3 : 1) }}>
@@ -168,7 +167,7 @@ class CommentsTable extends Component {
               onClick={() => this.handleDialogOpen(comment._id, COMMENTACTIONSENUM.DELETE)}>
               <IconDeleteForever />
             </IconButton>
-            <IconButton>
+            <IconButton component={Link} to={`/backoffice/comment-overview/${comment._id}`}>
               <IconInfo />
             </IconButton>
           </TableCell>
@@ -188,7 +187,6 @@ class CommentsTable extends Component {
               <TableCell>User</TableCell>
               <TableCell>Body</TableCell>
               <TableCell>Created</TableCell>
-              <TableCell>Activity</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>

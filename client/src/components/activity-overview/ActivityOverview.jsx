@@ -17,6 +17,7 @@ Material UI
 import { withStyles, List, ListSubheader, ListItem, ListItemText, Divider, ListItemIcon, Avatar } from 'material-ui';
 import IconComment from '@material-ui/icons/Comment';
 import IconThumbUp from '@material-ui/icons/ThumbUp';
+import IconList from '@material-ui/icons/List';
 
 const styles = theme => ({
   root: {
@@ -87,6 +88,12 @@ class ActivityOverview extends Component {
     if (this.state.activity) {
       return (
         <List className={classes.root}>
+        <ListItem>
+            <ListItemText primary="Activity" />
+            <Avatar component={Link} to="/backoffice/activities-table" classes={classes.avatar}>
+              <IconList />
+            </Avatar>
+          </ListItem>
           <ListSubheader>Id</ListSubheader>
           <ListItem>
             <ListItemText primary={activity._id} />

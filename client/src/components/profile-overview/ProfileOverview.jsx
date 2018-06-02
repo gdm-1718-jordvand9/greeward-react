@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withStyles, List, ListSubheader, ListItem, ListItemText, Divider, ListItemIcon, Avatar } from 'material-ui';
 import IconDirectionsBike from '@material-ui/icons/DirectionsBike';
 import IconComment from '@material-ui/icons/Comment';
+import IconList from '@material-ui/icons/List';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -14,6 +15,9 @@ const styles = theme => ({
     marginBottom: '1rem',
     backgroundColor: theme.palette.background.paper,
   },
+  avatar: {
+    color: '#fff',
+  }
 });
 class ProfileOverview extends Component {
   constructor(props) {
@@ -63,7 +67,7 @@ class ProfileOverview extends Component {
           return (
             <ListItem button component={Link} to={'/backoffice/comment-overview/' + element._id}>
               <ListItemIcon>
-              <IconComment />
+                <IconComment />
               </ListItemIcon>
               <ListItemText primary={element.body} />
             </ListItem>
@@ -80,6 +84,12 @@ class ProfileOverview extends Component {
     if (this.state.profile && this.state.comments) {
       return (
         <List className={classes.root}>
+          <ListItem>
+            <ListItemText primary="Profile" />
+            <Avatar component={Link} to="/backoffice/profiles-table" classes={classes.avatar}>
+              <IconList />
+            </Avatar>
+          </ListItem>
           <ListSubheader>Id</ListSubheader>
           <ListItem>
             <ListItemText primary={profile._id} />
@@ -115,7 +125,7 @@ class ProfileOverview extends Component {
           {this.getCommentsAsJsx()}
         </List>
       );
-    } else{
+    } else {
       return (
         <LoadingIndicator />
       )
