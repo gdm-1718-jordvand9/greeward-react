@@ -12,6 +12,7 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const auth = require('./server/api/v1/providers/auth')();
+const PORT = process.env.PORT || 5000;
 
 
 /*
@@ -25,14 +26,14 @@ Settings
 const key = fs.readFileSync('encryption/private.key');
 const cert = fs.readFileSync('encryption/mydomain.crt');
 const ca = fs.readFileSync('encryption/mydomain.crt');
-var httpsOptions = {
+/* var httpsOptions = {
     key: key,
     cert: cert,
     ca: ca
 };
 const server = https.Server(httpsOptions, app);
 const hostName = 'localhost';
-const port = '8080';
+const port = '8080'; */
 const nodeEnv = (process.env.NODE_ENV)?process.env.NODE_ENV:'development';
 if(nodeEnv !== 'production') {
     console.log('Do some development stuff!');
@@ -91,6 +92,6 @@ app.use((err, req, res, next) => {
 /*
 Launch server
 */
-server.listen(port, hostName, () => {
-    console.log(`Node server running at https://${hostName}:${port}/!`)
+app.listen(PORT, () => {
+    console.log(`Node server running!`)
 });
