@@ -1,0 +1,38 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "@google/maps": "^0.4.6",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "cuid": "^2.1.0",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^8.2.0",
+    "mapbox-gl": "^0.45.0",
+    "mongoose": "^5.0.10",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-facebook-token": "^3.3.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "slugify": "^1.2.9",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.15.1"
+  },
+  "scripts": {
+    "start": "echo 'Server started in production mode.' & SET NODE_ENV=production & node server.js",
+    "start-dev": "echo 'Server started in development mode.' & SET NODE_ENV=development & nodemon --config nodemon.json server.js",
+    "c-install": "yarn install && cd client && yarn install",
+    "c-start-dev": "concurrently \"yarn start-dev\" \"cd client && yarn start-all\""
+  }
+}

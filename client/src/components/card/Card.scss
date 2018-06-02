@@ -1,0 +1,47 @@
+.card-drop {
+  &:hover {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  }
+  .card__map {
+    height: 15rem;
+    background-color: #0C4D48;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .card__content {
+    color: #0C4D48;
+    padding-left: 16px;
+    padding-right: 16px;
+    h2 {
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+    .card__date {
+      font-size: 0.8rem;
+      margin-top: 0;
+    }
+    .card__stats {
+      .card__number {
+        margin-top: 0;
+        font-weight: 500;
+        font-size: 1.5rem;
+        .unit {
+          font-size: 1rem;
+          font-weight: 300;
+        }
+      }
+      .card__stat__type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  padding: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  transition: .3s all;
+  font-family: 'Raleway', sans-serif;
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Open Sans', sans-serif;
+  }
+}

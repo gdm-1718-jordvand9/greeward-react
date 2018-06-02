@@ -1,0 +1,22 @@
+.sidebar__icon {
+  text-align: center;
+  color: rgba($color: #000000, $alpha: 0.5);
+  i {
+    padding: 2rem 0;
+  }
+  &:hover {
+    color: #0C4D48;
+  }
+}
+.sidebar__icon--active {
+  color: #0C4D48;
+}
+
+.nav {
+  a {
+    &:visited {
+      color:inherit;
+    }
+    color:inherit;
+  }
+}

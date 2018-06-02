@@ -1,0 +1,42 @@
+.header {
+  //height: 13vh;
+  height: 5.5rem;
+  input {
+    background-color: #0C4D48;
+    border:none;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    width: 17rem;
+    font-size: 0.7rem;
+    &::placeholder {
+      color: #fff;
+      opacity: 0.8;
+    }
+  }
+  .header__logo {
+    height: 100%;
+    font-size: 1.7rem;
+    i {
+      color: #fff;
+    }
+  }
+}
+.header--left {
+  background-color: #0C4D48;
+  color: #fff;
+}
+
+.header--right {
+  background-color: #105D57;
+}
+
+.header--input {
+  color: #fff;
+  height: 100%;
+}
+
+.header__toolbar {
+  text-align: center;
+}

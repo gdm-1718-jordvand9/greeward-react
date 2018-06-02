@@ -1,0 +1,11 @@
+.link {
+  a {
+    text-decoration: none;
+  }
+}
+.card-drop {
+  margin-top: 4rem;
+  &:last-child {
+    margin-bottom: 4rem;
+  }
+}

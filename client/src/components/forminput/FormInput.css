@@ -1,0 +1,12 @@
+.form-input input {
+  background-color: #F5F6FB;
+  border: none;
+  letter-spacing: 0.1rem;
+  padding: 0.8rem 2rem;
+  border-radius: 50px; }
+  .form-input input::placeholder {
+    opacity: 0.8; }
+
+.form-input span {
+  color: #d9534f;
+  font-size: 0.8rem; }
