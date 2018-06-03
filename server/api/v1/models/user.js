@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const Role = require('./role');
 const Activity = require('./activity');
 const Comment = require('./comment');
 const config = require('../../../config/config');
@@ -58,7 +57,6 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.statics.upsertFbUser = function (accessToken, refreshToken, profile, cb) {
   var User = this;
-  let roleId = null;
   return User.findOne({
     'facebookProvider.id': profile.id
   }, function (err, user) {
@@ -73,8 +71,6 @@ UserSchema.statics.upsertFbUser = function (accessToken, refreshToken, profile, 
           return cb(err3, savedUser);
         });
       } else {
-        Role.findOne({ 'name': 'user' }, function (err, role2) {
-        }).then((doc) => {
           var newUser = new User({
             email: profile.emails[0].value,
             avatar: profile.photos[0].value,
@@ -90,9 +86,6 @@ UserSchema.statics.upsertFbUser = function (accessToken, refreshToken, profile, 
           newUser.save(function (err3, savedUser) {
             return cb(err3, savedUser);
           });
-          newUser.update({},{ $push: { 'roles': doc._id } },);
-        }).catch(console.log(err));
-
       }
     });
   });

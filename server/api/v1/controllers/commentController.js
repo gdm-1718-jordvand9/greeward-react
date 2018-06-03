@@ -66,7 +66,7 @@ exports.comment_softdelete_patch = function(req, res, next) {
 }
 
 /*
-Soft-undelete a post
+Soft-undelete a comment
 */
 exports.comment_softundelete_patch = function(req, res, next) {
   const id = req.params.commentId;

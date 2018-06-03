@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 
 /*
-Material UI
-*/
-
-
-/*
-Components
-*/
-//import PostDetail from '../../components/post-detail/PostDetail';
-
-/*
 Component styles
 */
 import './ProfilePage.css';

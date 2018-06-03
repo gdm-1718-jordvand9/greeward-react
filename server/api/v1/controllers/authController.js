@@ -18,7 +18,7 @@ exports.user_create_post = function (req, res, next) {
       password: req.body.password
     }
   });
-  user.save((err, post) => {
+  user.save((err, user) => {
     if (err) return next(err);
     res.status(201).json(user);
   });

@@ -13,6 +13,7 @@ const googleMapsClient = require('@google/maps').createClient({
   key: 'AIzaSyAMFOXgK0rg2MC_Kx5vrDhInQ2GEa5YVVM',
   Promise: Promise
 });
+
 /*
 Get all activities
 */
@@ -46,7 +47,6 @@ exports.get_activity = function (req, res, next) {
 /*
 Create a activity
 */
-
 exports.activity_create_post = function (req, res, next) {
   let start = getRandomLatLng();
   let stop = getRandomLatLng();
@@ -77,6 +77,9 @@ exports.activity_create_post = function (req, res, next) {
 
 }
 
+/*
+Update user stats
+*/
 function updateUserStats(activity, distance, points, _user) {
   User.findByIdAndUpdate(_user, {
     $inc: {"stats.km": distance, "stats.pts": points },
@@ -94,52 +97,9 @@ function updateUserStats(activity, distance, points, _user) {
       return errorHandler.handleAPIError(500, `Could not update user with id: ${_user}`, next);
     });
 }
-/*
-Update a Post
-*/
-exports.post_update_get = function (req, res, next) {
-  async.parallel({
-    post: function (callback) {
-      const id = req.params.postId;
-      Post.findById(id, callback).populate('_category');
-    },
-    categories: function (callback) {
-      Category.find(callback).sort({ created_at: -1 });
-    },
-  }, function (err, results) {
-    if (err) { return next(err); }
-    res.json({ post: results.post, categories: results.categories });
-  });
-}
-
-exports.post_update_put = function (req, res, next) {
-  if (!req.body || !req.body.title || !req.body.synopsis || !req.body.body || !req.body._category) {
-    return errorHandler.handleAPIError(400, `Post must have a title, synopsis, body and _category`, next);
-  }
-
-  const id = req.params.postId;
-
-  Post.findByIdAndUpdate(id, {
-    title: req.body.title,
-    synopsis: req.body.synopsis,
-    body: req.body.body,
-    _category: req.body._category,
-  }, { new: true })
-    .then(post => {
-      if (!post) {
-        return errorHandler.handleAPIError(404, `Post not found with id: ${id}`, next);
-      }
-      res.send(post);
-    }).catch(err => {
-      if (err.kind === 'ObjectId') {
-        return errorHandler.handleAPIError(404, `Post not found with id: ${id}`, next);
-      }
-      return errorHandler.handleAPIError(500, `Could not update post with id: ${id}`, next);
-    });
-}
 
 /*
-Delete a Post
+Delete an activity
 */
 exports.activity_delete_delete = function (req, res, next) {
   const id = req.params.activityId;
@@ -159,7 +119,7 @@ exports.activity_delete_delete = function (req, res, next) {
 
 
 /*
-Soft-undelete a post
+Soft-undelete an activity
 */
 exports.activity_softundelete_patch = function (req, res, next) {
   const id = req.params.activityId;
@@ -200,10 +160,9 @@ function getRandomLatLng() {
   var y = w * Math.sin(t);
 
   var xp = x / Math.cos(y0);
-
-  // Resulting point.
   return { 'lat': y + y0, 'lng': xp + x0 };
 }
+
 /* 
 Backoffice 
 */
@@ -231,9 +190,8 @@ exports.backoffice_get_activity = function (req, res, next) {
   });
 }
 
-
 /*
-Soft-delete a post
+Soft-delete an activity
 */
 exports.activity_softdelete_patch = function(req, res, next) {
   const id = req.params.activityId;

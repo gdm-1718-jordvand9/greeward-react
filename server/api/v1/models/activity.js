@@ -24,10 +24,5 @@ const ActivitySchema = new Schema(
 );
 
 ActivitySchema.virtual('id').get(() => this._id );
-ActivitySchema.virtual('users', {
-  ref: 'Blog',
-  localField: '_id',
-  foreignField: 'activities'
-});
 
 module.exports = mongoose.model('Activity', ActivitySchema);
