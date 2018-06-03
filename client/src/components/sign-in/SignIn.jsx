@@ -71,6 +71,12 @@ class SignIn extends Component {
     this.props.signInFacebook(response.accessToken, this.props.history);
   };
 
+  componentWillReceiveProps(next) {
+    if(next.authenticated) {
+      this.props.history.push('/activities');
+    }
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -127,7 +133,8 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authError: state.auth.error
+    authError: state.auth.error,
+    authenticated: state.auth.authenticated,
   };
 };
 

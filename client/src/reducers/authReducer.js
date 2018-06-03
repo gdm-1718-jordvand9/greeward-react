@@ -2,7 +2,8 @@ import { AUTHENTICATED, AUTHENTICATION_ERROR, UNAUTHENTICATED, SIGNEDUP, SIGNUP_
 
 const initialState = {
   authenticated: false,
-  error: undefined
+  error: undefined,
+  signedup: false,
 }
 
 function authReducer(state = initialState, action) {
@@ -29,7 +30,7 @@ function authReducer(state = initialState, action) {
     case SIGNUP_ERROR:
       return Object.assign({}, state, {
         signedup: false,
-        error: action.payload
+        error: 'Not able to sign up new user.'
       });
     default:
       return state;

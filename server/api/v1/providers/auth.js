@@ -35,6 +35,7 @@ module.exports = function() {
         User.findOne({ 'email': username }, function (err, user) {
           if (err) { return done(err); }
           if (!user) { return done(null, false); }
+          if (!user.localProvider.password) { return done('Account signed up with facebook.', false); }
           user.comparePassword(password, function(isMatch) {
             if (!isMatch) {
               return done(null, false);

@@ -23,7 +23,7 @@ import './SignInPage.css';
 class SignInPage extends Component {
   render() {
     return (
-      <SignIn />
+      <SignIn history={this.props.history}/>
     )
   }
 }

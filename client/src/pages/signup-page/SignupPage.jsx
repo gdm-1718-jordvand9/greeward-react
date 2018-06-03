@@ -19,7 +19,7 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <Signup />
+      <Signup history={this.props.history}/>
     )
   }
 }
