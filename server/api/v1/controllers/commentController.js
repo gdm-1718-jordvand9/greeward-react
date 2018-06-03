@@ -141,3 +141,16 @@ exports.comment_delete_delete = function (req, res, next) {
       return errorHandler.handleAPIError(500, `Could not delete comment with id: ${id}`, next);
     });
 }
+
+exports.get_account_comments = function (req, res, next) {
+  const id = req.userId;
+  const query = Comment.find({_user: id});
+  query.sort({ created_at: -1 });
+  query.exec((err, comments) => {
+    if (err) return errorHandler.handleAPIError(500, err.message || 'Some error occurred while retrieving comments', next);
+    if (!comments) {
+      return errorHandler.handleAPIError(404, `Comments not found`, next);
+    }
+    return res.json(comments);
+  });
+}

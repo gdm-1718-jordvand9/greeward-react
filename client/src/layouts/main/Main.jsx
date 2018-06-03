@@ -46,6 +46,7 @@ import ProfilesTablePage from '../../pages/profiles-table-page/ProfilesTablePage
 import ActivityOverviewPage from '../../pages/activity-overview-page/ActivityOverviewPage';
 import ProfileOverviewPage from '../../pages/profile-overview-page/ProfileOverviewPage';
 import CommentOverviewPage from '../../pages/comment-overview-page/CommentOverviewPage';
+import AccountSettingsPage from '../../pages/account-settings-page/AccountSettingsPage';
 
 
 
@@ -99,6 +100,7 @@ class Main extends Component {
               <Route exact path='/feed' component={FeedPage} />
               <Route exact path='/activities' component={ActivitiesList} />
               <Route exact path='/activity/:id' component={ActivityPage} />
+              <Route path='/account-settings' component={AccountSettingsPage} />
               <Route path='/posts/:id' component={PostPage} />
               <Route path='/signin' component={SignInPage} />
               <Route path='/signout' component={SignOutPage} />

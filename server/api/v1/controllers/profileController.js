@@ -53,3 +53,17 @@ exports.profile_delete_delete = function (req, res, next) {
       return errorHandler.handleAPIError(500, `Could not user activity with id: ${id}`, next);
     });
 }
+
+exports.get_account = function (req, res, next) {
+  const id = req.userId;
+  const query = User.findById(id).populate({ path: 'activities', options: { sort: { created_at: -1 } } });
+  query.exec((err, profile) => {
+    if (err) return next(err);
+    if (profile == null) {
+      return errorHandler.handleAPIError(`Account not found with id: ${id}`, next);
+    }
+    return res.json(profile);
+  });
+}
+
+

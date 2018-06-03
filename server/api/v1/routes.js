@@ -30,7 +30,7 @@ router.get('/categories/:id', categoryController.get_category);
 //router.get('/posts', auth.authenticateJwt(), postController.get_posts);// Securing the end-point to-do
 router.get('/activities', activityController.get_activities);
 router.get('/activity/:activityId', activityController.get_activity);
-router.post('/activity', verifyToken , activityController.activity_create_post);
+router.post('/activity', verifyToken, activityController.activity_create_post);
 router.get('/posts', postController.get_posts);
 router.get('/posts/:postId', postController.get_post);
 router.get('/posts/vm/create', postController.post_create_get);
@@ -47,12 +47,12 @@ router.get('/followers/:id', followController.get_followers);
 router.get('/following/:id', followController.get_following);
 router.get('/follow/check/:id', verifyToken, followController.is_following);
 router.post('/unfollow/:id', verifyToken, followController.unfollow_post);
-router.post('/like/:activityId', verifyToken , likeController.like_create_post);
-router.post('/unlike/:activityId', verifyToken , likeController.like_remove_post);
+router.post('/like/:activityId', verifyToken, likeController.like_create_post);
+router.post('/unlike/:activityId', verifyToken, likeController.like_remove_post);
 
 
 
-router.post('/comments/:activityId', verifyToken , commentController.comment_create_post);
+router.post('/comments/:activityId', verifyToken, commentController.comment_create_post);
 
 router.post('/signup', authController.user_create_post);
 authRouter.post('/local', authController.user_auth_local_post);
@@ -76,5 +76,9 @@ router.patch('/comments/:commentId/softdelete', commentController.comment_softde
 router.patch('/comments/:commentId/softundelete', commentController.comment_softundelete_patch);
 router.delete('/comments/:commentId', commentController.comment_delete_delete);
 router.delete('/profiles/:profileId', profileController.profile_delete_delete);
+
+// Account
+router.get('/account', verifyToken, profileController.get_account);
+router.get('/account/comments', verifyToken, commentController.get_account_comments);
 
 module.exports = router;
