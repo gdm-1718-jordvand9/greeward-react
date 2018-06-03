@@ -8,20 +8,14 @@ import { Link } from 'react-router-dom';
 /*
 Libraries
 */
-import { Field, reduxForm } from 'redux-form';
 import FacebookLogin from 'react-facebook-login';
 
 /*
 State management
 */
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { signInActionFacebookStrategy, signInActionLocalStrategy } from '../../actions/authActions';
-
-/*
-Material UI
-*/
-import Button from 'material-ui/Button';
-import { TextField } from 'redux-form-material-ui'
 
 /*
 Configuration
@@ -43,7 +37,6 @@ const validate = values => {
   const requiredFields = [
     'email',
     'password',
-    'age'
   ]
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -65,10 +58,10 @@ class SignIn extends Component {
   }
 
   errorMessage() {
-    if (this.props.error) {
+    if (this.props.authError) {
       return (
-        <div className="info-red">
-          {this.props.error.message}
+        <div className="error-message">
+          {this.props.authError}
         </div>
       );
     }
@@ -84,7 +77,7 @@ class SignIn extends Component {
       <Card>
         <div className="row p-4 sign-in">
           <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-          <h1>Sign in</h1>
+            <h1>Sign in</h1>
             <form onSubmit={handleSubmit(this.submit)} className="row">
               <div className="col-12">
                 <Field name="email"
@@ -102,26 +95,26 @@ class SignIn extends Component {
                 />
               </div>
               <div className="col-12 mt-3">
-              <button className="btn--primary" type="submit">Sign in</button>
+                <button className="btn--primary" type="submit">Sign in</button>
               </div>
             </form>
             <div className="row mt-2">
-            <div className="col-12 sign-up-message">
-              <Link to="/signup">No account yet ? Sign up!</Link>
-            </div>
-            </div>
-            <div className="row">
               <div className="col-12">
                 {this.errorMessage()}
               </div>
             </div>
+            <div className="row mt-2">
+              <div className="col-12 sign-up-message">
+                <Link to="/signup">No account yet ? Sign up!</Link>
+              </div>
+            </div>
             <div className="row mt-4">
               <div className="col-12">
-              <FacebookLogin
-              appId={config.FACEBOOK_APP_ID}
-              autoLoad={false}
-              fields="name,email,picture"
-              callback={this.facebookResponse} />
+                <FacebookLogin
+                  appId={config.FACEBOOK_APP_ID}
+                  autoLoad={false}
+                  fields="name,email,picture"
+                  callback={this.facebookResponse} />
               </div>
             </div>
           </div>
@@ -131,9 +124,6 @@ class SignIn extends Component {
   }
 }
 
-SignIn.propTypes = {
-  authError: PropTypes.object,
-};
 
 const mapStateToProps = (state) => {
   return {

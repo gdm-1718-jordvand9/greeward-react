@@ -1,4 +1,4 @@
-import { AUTHENTICATED, AUTHENTICATION_ERROR, UNAUTHENTICATED } from '../constants';
+import { AUTHENTICATED, AUTHENTICATION_ERROR, UNAUTHENTICATED, SIGNEDUP, SIGNUP_ERROR } from '../constants';
 
 const initialState = {
   authenticated: false,
@@ -20,6 +20,15 @@ function authReducer(state = initialState, action) {
     case AUTHENTICATION_ERROR:
       return Object.assign({}, state, {
         authenticated: false,
+        error: action.payload
+      });
+    case SIGNEDUP:
+      return Object.assign({}, state, {
+        signedup: true,
+      });
+    case SIGNUP_ERROR:
+      return Object.assign({}, state, {
+        signedup: false,
         error: action.payload
       });
     default:

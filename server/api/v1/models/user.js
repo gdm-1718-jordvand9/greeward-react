@@ -13,7 +13,6 @@ const UserSchema = mongoose.Schema(
       trim: true, unique: true,
       match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
-    roles: [{ type: Schema.Types.ObjectId, ref: 'Role', required: false }],
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     localProvider: {
@@ -67,6 +66,7 @@ UserSchema.statics.upsertFbUser = function (accessToken, refreshToken, profile, 
     // Check if a user exists with the same email
     return User.findOne({ 'email': profile.emails[0].value }, function (err2, user2) {
       if (user2) {
+        user2.avatar = profile.photos[0].value,
         user2.facebookProvider.id = profile.id;
         user2.facebookProvider.token = accessToken;
         user2.save(function (err3, savedUser) {
@@ -100,9 +100,9 @@ UserSchema.statics.upsertFbUser = function (accessToken, refreshToken, profile, 
 
 UserSchema.methods.comparePassword = function (candidatePassword, cb) {
   const user = this;
-  bcrypt.compare(candidatePassword, user.password, function (err, isMatch) {
+  bcrypt.compare(candidatePassword, user.localProvider.password, function (err, isMatch) {
     if (err) return cb(err, null);
-    cb(null, isMatch);
+    cb(isMatch);
   });
 };
 

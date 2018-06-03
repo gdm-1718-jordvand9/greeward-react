@@ -1,2 +1,5 @@
 .sign-in .sign-up-message {
   font-size: 0.8rem; }
+
+.sign-in .error-message {
+  color: #d9534f; }

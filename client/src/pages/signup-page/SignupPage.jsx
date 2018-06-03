@@ -13,16 +13,13 @@ Components
 Component styles
 */
 import './SignupPage.css';
+import Signup from '../../components/sign-up/Signup';
 
 class SignupPage extends Component {
 
   render() {
     return (
-      <div>
-        <div className="c-max">
-          
-        </div>
-      </div>
+      <Signup />
     )
   }
 }

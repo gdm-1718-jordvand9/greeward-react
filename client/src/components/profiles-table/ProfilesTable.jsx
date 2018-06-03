@@ -152,7 +152,7 @@ class CommentsTable extends Component {
       containerElement = this.state.profiles.map((profile, index) => (
         <TableRow key={profile._id}>
           <TableCell>{profile.first_name + ' ' + profile.last_name}</TableCell>
-          <TableCell numeric>{parseFloat(profile.stats.co).toFixed()}</TableCell>
+          <TableCell numeric>{parseFloat(profile.stats.km / 9).toFixed()}</TableCell>
           <TableCell numeric>{parseFloat(profile.stats.km / 1000).toFixed(1)}</TableCell>
           <TableCell numeric>{parseFloat(profile.stats.pts).toFixed()}</TableCell>
           <TableCell>{moment(profile.created_at).format('DD/MM/YYYY')}</TableCell>

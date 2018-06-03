@@ -5,18 +5,22 @@ const Following = require('../models/following');
 const errorHandler = require('../utilities/errorHandler');
 const tokenUtils = require('../utilities/token');
 const config = require('../../../config/config');
+const faker = require('faker');
 
 
 exports.user_create_post = function (req, res, next) {
-  console.log(req.body);
-  const user = new User(req.body);
+  const user = new User({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    avatar: faker.image.avatar(),
+    localProvider: {
+      password: req.body.password
+    }
+  });
   user.save((err, post) => {
     if (err) return next(err);
     res.status(201).json(user);
-    const following = new Following({
-      _uid: user._id,
-      _fid: [],
-    });
   });
 }
 

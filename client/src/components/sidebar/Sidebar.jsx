@@ -36,7 +36,7 @@ class Sidebar extends Component {
       cache: 'default',
       headers: { 'x-access-token': this.props.token }
     };
-    fetch('/api/v1/activity', options).then((res) => console.log(res)).catch((err) => console.log(err));
+    fetch('https://greeward.herokuapp.com/api/v1/activity', options).then((res) => console.log(res)).catch((err) => console.log(err));
   }
   render() {
     if (this.props.user) {
