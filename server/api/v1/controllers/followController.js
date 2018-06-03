@@ -1,7 +1,5 @@
 const async = require('async');
 
-
-const Follower = require('../models/follower');
 const Following = require('../models/following');
 const errorHandler = require('../utilities/errorHandler');
 
