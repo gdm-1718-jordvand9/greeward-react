@@ -56,7 +56,7 @@ exports.profile_delete_delete = function (req, res, next) {
 
 exports.get_account = function (req, res, next) {
   const id = req.userId;
-  const query = User.findById(id).populate({ path: 'activities', options: { sort: { created_at: -1 } } });
+  const query = User.findById(id).populate({ path: 'activities', match: { deleted_at : null},options: { sort: { created_at: -1 } } });
   query.exec((err, profile) => {
     if (err) return next(err);
     if (profile == null) {
@@ -64,6 +64,27 @@ exports.get_account = function (req, res, next) {
     }
     return res.json(profile);
   });
+}
+
+exports.profile_update_put = function(req, res, next) {
+  if(!req.body) {
+    return errorHandler.handleAPIError(400, `Profile update must have a body`, next);
+  }
+
+  const id = req.userId;
+
+  User.findByIdAndUpdate(id, req.body, {new: true})
+    .then(profile => {
+      if(!profile) {
+        return errorHandler.handleAPIError(404, `Profile not found with id: ${id}`, next);
+      }
+      res.send(profile);
+    }).catch(err => {
+      if(err.kind === 'ObjectId') {
+        return errorHandler.handleAPIError(404, `Profile not found with id: ${id}`, next);            
+      }
+      return errorHandler.handleAPIError(500, `Could not update profile with id: ${id}`, next);
+    });
 }
 
 

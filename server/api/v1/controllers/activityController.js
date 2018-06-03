@@ -17,19 +17,6 @@ const googleMapsClient = require('@google/maps').createClient({
 Get all activities
 */
 exports.get_activities = function (req, res, next) {
-  /*googleMapsClient.distanceMatrix({
-    origins: {lat: 51.05341567143143, lng: 3.7180641392575655},
-    destinations: { lat: 51.04723698244587, lng: 3.721773542946704},
-    mode: 'bicycling',
-  })
-  .asPromise()
-  .then((response) => {
-    console.log(JSON.stringify(response));
-    console.log(response.json.rows[0].elements[0].distance.value);
-  })
-  .catch((err) => {
-    console.log(err);
-  });*/
   const query = Activity.find({deleted_at: null}).populate({ path: '_user', model: User, match: { deleted_at: { $exists: false } } });
   query.sort({ created_at: -1 });
   query.exec((err, activities) => {

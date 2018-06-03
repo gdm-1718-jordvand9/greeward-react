@@ -26,14 +26,14 @@ Settings
 const key = fs.readFileSync('encryption/private.key');
 const cert = fs.readFileSync('encryption/mydomain.crt');
 const ca = fs.readFileSync('encryption/mydomain.crt');
-/* var httpsOptions = {
+var httpsOptions = {
     key: key,
     cert: cert,
     ca: ca
 };
 const server = https.Server(httpsOptions, app);
 const hostName = 'localhost';
-const port = '8080'; */
+const port = '8080';
 const nodeEnv = (process.env.NODE_ENV)?process.env.NODE_ENV:'development';
 if(nodeEnv !== 'production') {
     console.log('Do some development stuff!');
@@ -92,10 +92,10 @@ app.use((err, req, res, next) => {
 /*
 Launch server
 */
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
     console.log(`Node server running!`)
-});
-
-/* server.listen(port, hostName, () => {
-    console.log(`Node server running at https://${hostName}:${port}/!`)
 }); */
+
+server.listen(port, hostName, () => {
+    console.log(`Node server running at https://${hostName}:${port}/!`)
+});

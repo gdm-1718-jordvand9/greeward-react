@@ -79,6 +79,7 @@ router.delete('/profiles/:profileId', profileController.profile_delete_delete);
 
 // Account
 router.get('/account', verifyToken, profileController.get_account);
+router.put('/account', verifyToken, profileController.profile_update_put);
 router.get('/account/comments', verifyToken, commentController.get_account_comments);
 
 module.exports = router;

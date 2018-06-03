@@ -21,7 +21,7 @@ class Nav extends Component {
             <Link to="/friends"><i className="fas fa-user-circle"></i></Link>
           </div>
           <div className="col-3 col-md-12 sidebar__icon align-items-center justify-content-center">
-            <a href=""><i className="fas fa-cog"></i></a>
+            <a href="/account-settings"><i className="fas fa-cog"></i></a>
           </div>
         </div>
       </div>
