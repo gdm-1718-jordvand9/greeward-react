@@ -31,7 +31,6 @@
   },
   "scripts": {
     "start": "echo 'Server started in production mode.' & SET NODE_ENV=production & node server.js",
-    "heroku-postbuild": "cd client && yarn && yarn run build",
     "start-dev": "echo 'Server started in development mode.' & SET NODE_ENV=development & nodemon --config nodemon.json server.js",
     "c-install": "yarn install && cd client && yarn install",
     "c-start-dev": "concurrently \"yarn start-dev\" \"cd client && yarn start-all\""
