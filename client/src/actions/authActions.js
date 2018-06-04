@@ -41,7 +41,7 @@ export function signUpActionLocalStrategy({ first_name, last_name, email, passwo
         cache: 'default'
       };
       const response = await fetch('https://greeward.herokuapp.com/api/v1/signup', options);
-      if(response.status !== 201) {
+      if(response.status > 300) {
         throw new Error("Not 200 response");
       }
       const responseJson = await response.json();

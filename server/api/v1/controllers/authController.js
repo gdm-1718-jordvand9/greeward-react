@@ -19,6 +19,7 @@ exports.user_create_post = function (req, res, next) {
     }
   });
   user.save((err, user) => {
+    console.log(err);
     if (err) return next(err);
     res.status(201).json(user);
   });
