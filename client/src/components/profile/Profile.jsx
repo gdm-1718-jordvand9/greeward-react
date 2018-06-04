@@ -41,29 +41,31 @@ class Profile extends Component {
       console.log(this.state.following);
       return [
         <Link to={`/following/${this.props.profileId}`}>
-          <button className="btn--secondary mr-2 mb-2">{this.state.following._fid.length} Following</button>
+          <button className="btn--secondary mr-2 mb-2">{this.state.following.length} Following</button>
         </Link>
       ];
     }
+  }
+  fetchFollow() {
+    fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.userId}`)
+      .then(response => response.json())
+      .then(item => this.setState({ following: item._fid, loading: false }));
+    fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.userId}`)
+      .then(response => response.json())
+      .then(item => {
+        this.setState({ followers: item, loading: false })
+        console.log(item);
+        const isFollowing = item.find((obj) => { return obj._uid._id === this.props.userId });
+        if (isFollowing) this.setState({ followers: item, followed: true });
+        if (!isFollowing) this.setState({ followers: item });
+      });
   }
   componentDidMount() {
     fetch(`https://greeward.herokuapp.com/api/v1/profile/${this.props.profileId}`)
       .then(response => response.json())
       .then(item => this.setState({ profile: item }));
-    fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.profileId}`)
-      .then(response => {
-        if (response.status !== 200) {
-          throw new Error("Not 200 response")
-        } else {
-          response.json()
-        }
-      })
-      .then(item => this.setState({ following: item, loading: false }))
-      .catch(err => {
-        console.log('error');
-        this.setState({ following: { _fid: [] } })
-      });
-    fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.profileId}`)
+    this.fetchFollow();
+    /* fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.profileId}`)
       .then(response => {
         if (response.status !== 200) {
           throw new Error("Not 200 response")
@@ -72,6 +74,7 @@ class Profile extends Component {
         }
       })
       .then(item => {
+        console.log(item);
         const isFollowing = item.find((obj) => { return obj._uid._id === this.props.userId })
         if (isFollowing) {
           this.setState({ followers: item, followed: true });
@@ -80,7 +83,7 @@ class Profile extends Component {
         }
       }).catch(err => {
         this.setState({ followers: [] });
-      });
+      }); */
     // if (this.props.authenticated && this.state.followers) {
 
     // }
@@ -97,7 +100,10 @@ class Profile extends Component {
     };
     fetch('https://greeward.herokuapp.com/api/v1/follow', options)
       .then(response => response.json())
-      .then(item => this.setState({ followed: true, followers: item }));
+      .then(item => {
+        this.setState({ followed: true, followers: item })
+        this.fetchFollow();
+    });
   }
   unFollowUser() {
     const options = {

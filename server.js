@@ -26,16 +26,16 @@ Settings
 const key = fs.readFileSync('encryption/private.key');
 const cert = fs.readFileSync('encryption/mydomain.crt');
 const ca = fs.readFileSync('encryption/mydomain.crt');
-/* var httpsOptions = {
+var httpsOptions = {
     key: key,
     cert: cert,
     ca: ca
 };
 const server = https.Server(httpsOptions, app);
 const hostName = 'localhost';
-const port = '8080'; */
-const nodeEnv = (process.env.NODE_ENV)?process.env.NODE_ENV:'development';
-if(nodeEnv !== 'production') {
+const port = '8080';
+const nodeEnv = (process.env.NODE_ENV) ? process.env.NODE_ENV : 'development';
+if (nodeEnv !== 'production') {
     console.log('Do some development stuff!');
 }
 
@@ -70,7 +70,7 @@ Express.js settings
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('', routes);
 app.use((req, res, next) => {
     const err = new Error('Not Found!');
@@ -92,10 +92,10 @@ app.use((err, req, res, next) => {
 /*
 Launch server
 */
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
     console.log(`Node server running!`)
-});
-
-/* server.listen(port, hostName, () => {
-    console.log(`Node server running at https://${hostName}:${port}/!`)
 }); */
+
+server.listen(port, hostName, () => {
+    console.log(`Node server running at https://${hostName}:${port}/!`)
+});
