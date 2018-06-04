@@ -20,7 +20,7 @@ class Profile extends Component {
       profile: null,
       followed: false,
       following: null,
-      followers: null,
+      followers: undefined,
       loading: true,
     }
   }
@@ -46,10 +46,10 @@ class Profile extends Component {
     }
   }
   fetchFollow() {
-    fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.userId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.profileId}`)
       .then(response => response.json())
       .then(item => this.setState({ following: item._fid, loading: false }));
-    fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.userId}`)
+    fetch(`https://greeward.herokuapp.com/api/v1/followers/${this.props.profileId}`)
       .then(response => response.json())
       .then(item => {
         this.setState({ followers: item, loading: false })
