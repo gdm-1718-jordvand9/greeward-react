@@ -38,7 +38,6 @@ class Profile extends Component {
   }
   followingButton() {
     if (this.state.following) {
-      console.log(this.state.following);
       return [
         <Link to={`/following/${this.props.profileId}`}>
           <button className="btn--secondary mr-2 mb-2">{this.state.following.length} Following</button>
@@ -55,7 +54,10 @@ class Profile extends Component {
       .then(item => {
         this.setState({ followers: item, loading: false })
         console.log(item);
+        console.log(this.props.userId);
         const isFollowing = item.find((obj) => { return obj._uid._id === this.props.userId });
+        console.log('isfollowing');
+        console.log(isFollowing);
         if (isFollowing) this.setState({ followers: item, followed: true });
         if (!isFollowing) this.setState({ followers: item });
       });
@@ -101,8 +103,8 @@ class Profile extends Component {
     fetch('https://greeward.herokuapp.com/api/v1/follow', options)
       .then(response => response.json())
       .then(item => {
-        this.setState({ followed: true, followers: item })
-        this.fetchFollow();
+        this.setState({ followers: item })
+        //this.fetchFollow();
     });
   }
   unFollowUser() {

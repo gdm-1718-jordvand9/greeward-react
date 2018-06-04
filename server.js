@@ -92,6 +92,7 @@ app.use((err, req, res, next) => {
 /*
 Launch server
 */
+app.disable('etag')
 app.listen(PORT, () => {
     console.log(`Node server running!`)
 });
