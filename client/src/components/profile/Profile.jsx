@@ -46,6 +46,7 @@ class Profile extends Component {
     }
   }
   fetchFollow() {
+    console.log(this.props.profileId);
     fetch(`https://greeward.herokuapp.com/api/v1/following/${this.props.profileId}`)
       .then(response => response.json())
       .then(item => this.setState({ following: item._fid, loading: false }));
@@ -103,8 +104,8 @@ class Profile extends Component {
     fetch('https://greeward.herokuapp.com/api/v1/follow', options)
       .then(response => response.json())
       .then(item => {
-        this.setState({ followers: item })
-        //this.fetchFollow();
+        this.setState({ followers: item, followed: true })
+        this.fetchFollow();
     });
   }
   unFollowUser() {
@@ -116,7 +117,10 @@ class Profile extends Component {
     };
     fetch(`https://greeward.herokuapp.com/api/v1/unfollow/${this.props.profileId}`, options)
       .then(response => response.json())
-      .then(item => this.setState({ followed: false, followers: item }));
+      .then(item => {
+        this.setState({ followed: false, followers: item })
+        this.fetchFollow();
+      });
   }
   render() {
     if (this.state.profile) {
